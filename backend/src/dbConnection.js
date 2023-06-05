@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 require('dotenv').config();
 
-const app = express();
-
 // Initialize parameters
 const dbName = process.env.DB_NAME;
 
