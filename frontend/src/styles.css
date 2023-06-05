@@ -1,0 +1,8 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+body {
+    background: linear-gradient(to bottom, #7474d8, #1230a9, #814497);
+    margin: 0 auto;
+    padding: 0 20px;
+    min-height: 715px;
+    font-family: 'Open Sans', sans-serif;
+}
