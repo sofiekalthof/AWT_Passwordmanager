@@ -3,13 +3,21 @@ require('dotenv').config();
 const ObjectId = require("mongodb").ObjectId;
 const passwordModel = require("../dbPasswordSchema.js");
 
+// Define port
+const port = 3600;
+
 // Create Express app
 const app = express();
 
 // Enable parsing of JSON bodies
 app.use(express.json());
 
-// get all passwords
+// start listening to the port
+app.listen(port, () => {
+    console.log("Listening on " + port + ".");
+  }); 
+
+// Get all passwords
 app.route("/passwords").get(async (req, res) => {
     let passwords = [];
   
@@ -23,7 +31,7 @@ app.route("/passwords").get(async (req, res) => {
     }
 });
 
-// get a specific password
+// Get a specific password
 app.route("/password-edit/:id").get(async (req, res) => {
     const id = req.params.id;
 
@@ -41,7 +49,7 @@ app.route("/password-edit/:id").get(async (req, res) => {
     }
 });
 
-// create a new password
+// Create a new password
 app.route("/passwords-edit").post(async (req, res) => {
     const doc = new passwordModel(req.body);
 
@@ -54,7 +62,7 @@ app.route("/passwords-edit").post(async (req, res) => {
     }
   });
 
-// update a password
+// Update a password
 app.route("/passwords-edit/:id").put(async (req, res) => {
     const id = req.params.id;
     const docBody = req.body;
@@ -73,7 +81,7 @@ app.route("/passwords-edit/:id").put(async (req, res) => {
     }
   });
 
-// delete a password
+// Delete a password
 app.route("/passwords/:id").delete(async (req, res) => {
     const id = req.params.id;
 
