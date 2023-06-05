@@ -1,6 +1,6 @@
 const passwordModel = require("./dbPasswordSchema.js");
 
-// some variables to test
+// some variables to test CRUD Ops
 const id = "646bc7d4d2d891a680ebe305";
 const doc = {
   "app": "testApp",
