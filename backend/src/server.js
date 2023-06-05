@@ -33,13 +33,13 @@ app.route("/password-edit/:id").get(async (req, res) => {
     const id = req.params.id;
 
     try{
-      const result = await passwordModel.findOne({_id: new ObjectId(id)});
+      const result = await passwordModel.findById(id);
 
       if (!result) {
         res.status(404).json({ error: "Searched password not found" });
         return;
       }
-      res.status(404).json(result);
+      res.status(201).json(result);
     } catch(err) {
       res.status(500).send(err);
     }
