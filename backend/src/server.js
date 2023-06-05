@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors")
 require('dotenv').config();
 const ObjectId = require("mongodb").ObjectId;
-const passwordModel = require("../dbPasswordSchema.js");
+const passwordModel = require("./dbPasswordSchema.js");
 
 // Define port
 const port = 3600;
