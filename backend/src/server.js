@@ -1,6 +1,5 @@
 const express = require("express");
 require('dotenv').config();
-const ObjectId = require("mongodb").ObjectId;
 const passwordModel = require("./dbPasswordSchema.js");
 
 // Define port
@@ -84,13 +83,10 @@ app.route("/passwords/:id").delete(async (req, res) => {
       const result = await passwordModel.findByIdAndDelete(id);
 
       if (!result) {
-        res.status(404).json({ error: "item not found" });
+        res.status(404).json({ error: "password not found" });
       }
       res.status(201).send(result);
     } catch(err) {
       res.status(500).send(err);
     }
   });
-
-
-
