@@ -1,10 +1,14 @@
 const express = require("express");
+const cors = require("cors")
 require('dotenv').config();
 const ObjectId = require("mongodb").ObjectId;
 const passwordModel = require("../dbPasswordSchema.js");
 
 // Define port
 const port = 3600;
+
+// Add CORS to all routes and methods
+app.use(cors());
 
 // Create Express app
 const app = express();
