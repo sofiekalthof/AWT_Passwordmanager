@@ -1,7 +1,5 @@
 const express = require("express");
-const cors = require("cors")
 require('dotenv').config();
-const ObjectId = require("mongodb").ObjectId;
 const passwordModel = require("./dbPasswordSchema.js");
 
 // Define port
@@ -26,10 +24,9 @@ app.route("/passwords").get(async (req, res) => {
     let passwords = [];
     try{
       passwords = await passwordModel.find({});
-      res.json(passwords);
-      console.log("All passwords found");
+      res.status(201).json(passwords);
     } catch(err) {
-      console.log("Error getting all passwords", err);
+      res.status(500).send(err);
     }
 });
 
@@ -38,16 +35,15 @@ app.route("/password-edit/:id").get(async (req, res) => {
     const id = req.params.id;
 
     try{
-      const result = await passwordModel.findOne({_id: new ObjectId(id)});
+      const result = await passwordModel.findById(id);
 
       if (!result) {
-        console.log("Password not found");
+        res.status(404).json({ error: "Searched password not found" });
         return;
       }
-      res.json(result);
-      console.log("password found");
+      res.status(201).json(result);
     } catch(err) {
-      console.log("Error getting specific password(password was found)", err);
+      res.status(500).send(err);
     }
 });
 
@@ -58,9 +54,9 @@ app.route("/passwords-edit").post(async (req, res) => {
     try {
       await doc.save();
       
-      res.json({ _id: res.insertedId });
+      res.status(201).json({ message: "New password created" });
     } catch(err) {
-      console.log("Error creating new password", err);
+      res.status(500).send(err);
     }
   });
 
@@ -73,13 +69,12 @@ app.route("/passwords-edit/:id").put(async (req, res) => {
       const result = await passwordModel.findByIdAndUpdate(id, docBody);
 
       if (result.matchedCount == 0) {
-        console.log("Could not find password to update");
+        res.status(404).json({ error: "Could not find password to update" });
         return;
       }
-
-      res.json({});
+      res.status(201).json(result);
     } catch(err) {
-      console.log("Error updating a password", err);
+      res.status(500).send(err);
     }
   });
 
@@ -91,15 +86,10 @@ app.route("/passwords/:id").delete(async (req, res) => {
       const result = await passwordModel.findByIdAndDelete(id);
 
       if (!result) {
-        res.status(404);
-        console.log("item not found");
+        res.status(404).json({ error: "password not found" });
       }
-      res.status(201).send({});
+      res.status(201).send(result);
     } catch(err) {
-      res.status(500);
-      console.log("Error updating a password", err);
+      res.status(500).send(err);
     }
   });
-
-
-
