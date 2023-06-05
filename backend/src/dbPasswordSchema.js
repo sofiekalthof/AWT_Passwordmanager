@@ -1,4 +1,3 @@
-//const mongoose = require("mongoose");
 const mongoose = require("./dbConnection.js");
 
 // Initialize parameters
