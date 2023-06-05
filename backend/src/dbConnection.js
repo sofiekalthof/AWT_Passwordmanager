@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const express = require("express");
 require('dotenv').config();
 
 // Initialize parameters
