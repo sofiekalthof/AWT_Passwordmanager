@@ -16,6 +16,6 @@ mongoose.connect(dbUrl, {
     })
     .catch((err) => {
       console.log("Error connecting to DB", err);
-    })
+    });
 
 module.exports = mongoose;
