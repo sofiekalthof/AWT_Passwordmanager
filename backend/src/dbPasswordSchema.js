@@ -1,5 +1,5 @@
 //const mongoose = require("mongoose");
-const mongoose = require("../backend/dbConnection.js");
+const mongoose = require("./dbConnection.js");
 
 // Initialize parameters
 const collectionName = process.env.DB_COLLECTION;

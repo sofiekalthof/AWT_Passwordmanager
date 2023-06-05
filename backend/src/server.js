@@ -1,4 +1,5 @@
 const express = require("express");
+const passwordModel = require("./dbPasswordSchema.js");
 
 // Create Express app
 const app = express();
