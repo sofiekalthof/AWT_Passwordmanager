@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 // Define port
-const port = 3600
+const port = 3600;
 
 // Enable parsing of JSON bodies
 app.use(express.json());
