@@ -7,9 +7,6 @@ const dbName = process.env.DB_NAME;
 // database connection string
 const dbUrl = process.env.MONGODB_URL;
 
-// define port
-const port = 3600;
-
 // create database connection
 mongoose.connect(dbUrl, {
     dbName: dbName
