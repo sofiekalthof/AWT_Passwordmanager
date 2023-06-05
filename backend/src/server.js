@@ -20,10 +20,8 @@ app.listen(port, () => {
 // Get all passwords
 app.route("/passwords").get(async (req, res) => {
     let passwords = [];
-  
-    passwords = await passwordModel.find({});
-
     try{
+      passwords = await passwordModel.find({});
       res.json(passwords);
       console.log("All passwords found");
     } catch(err) {
