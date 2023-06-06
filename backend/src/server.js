@@ -1,6 +1,5 @@
 const express = require("express");
-const cors = require("cors")
-require('dotenv').config();
+const cors = require("cors");
 const passwordModel = require("./dbPasswordSchema.js");
 
 // Define port
